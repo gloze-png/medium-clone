@@ -13,11 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
+        
         $posts = Post::orderBy('created_at', 'DESC')->simplepaginate(5);
 
-        return view('dashboard', [
-            'categories' => $categories,
+        return view('post.index', [
+    
             'posts' =>$posts
         ]);
     }
@@ -27,7 +27,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        return view('post.create',[
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -35,7 +38,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // dd($request->all()); to confirm somethings
+
+       $request->validate([
+        'image'=> ['required', 'image','mimes:png,jpg,gif,svg,jpeg|max:2048'],
+        'title'=>'required',
+        'content'=>'required',
+        'category_id'=>['required', 'exists:categories,id']
+       ]);
+
     }
 
     /**

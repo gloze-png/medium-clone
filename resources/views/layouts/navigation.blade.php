@@ -11,12 +11,19 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link >
+                        {{-- {{ __('Dashboard') }} --}}
                     </x-nav-link>
-                </div>
+                </div> 
             </div>
+            <div class="flex">
+                <a href="{{ route('post.create')}}" class="flex items-center">
+                <x-primary-button>
+                    Create post
+                </x-primary-button>
+            
+            </a>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -60,6 +67,8 @@
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+            </div>
+
             </div>
         </div>
     </div>
